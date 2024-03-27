@@ -1,134 +1,80 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-    type User {
-        _id: ID
-        firstName: String!
-        lastName: String!
-        email: String!
-        password: String!
-        accounts: [Account]
-        creditScore: Int
-        admin: Boolean!
-    }
-
-    input InputUser{
-        _id: ID
-        firstName: String!
-        lastName: String!
-        email: String!
-        password: String!
-        accounts: [InputAccount]
-        creditScore: Int
-        admin: Boolean!
-    }
-
-    type Account {
-        _id: ID
-        userId: String
-        accountNumber: String
-        alias: String
-        createdAt: String
-        approvedAt: String
-        status: String
-        product: [Product]
-        transactions: [Transaction]
-        accountBalance: Float
-        originalAmount: Float
-        maturityDate: String
-    }
-
-    input InputAccount {
-        _id: ID
-        userId: String
-        accountNumber: String
-        alias: String
-        createdAt: String
-        approvedAt: String
-        status: String
-        product: [InputProduct]
-        transactions: [InputTransaction]
-    }
-
-    type Transaction {
-        _id: ID!
-        transferTo: ID
-        amount: Float!
-        createdAt: String
-        approvedAt: String
-        status: String
-        approverId: ID
-        type: [TransType]
-    }
-
-    input InputTransaction {
-        _id: ID!
-        transferTo: ID
-        amount: Float!
-        createdAt: String
-        approvedAt: String
-        status: String
-        approverId: ID
-        type: [InputTransType]
-    }
-
-    type TransType {
-        _id: ID!
-        name: String!
-    }
-
-    input InputTransType {
-        _id: ID!
-        name: String!
-    }
-
-    type Product {
+    type Pokemon {
         _id: ID
         name: String!
-        description: String
-        unitPrice: Float
-        unitQty: Int
-        termDays: Int
-        fixedRate: Float
-        floatRate: Float
+        nickname: String!
+        ability: String!
+        move1: String!
+        move2: String!
+        move3: String!
+        move4: String!
+        item: String!
+        nature: String!
+        hpEV: Int!
+        atkEV: Int!
+        defEV: Int!
+        spaEV: Int!
+        spdefEV: Int!
+        spdEV: Int!
+        tera: String!
     }
 
-    input InputProduct {
+    input InputPokemon {
         _id: ID
         name: String!
-        description: String
-        unitPrice: Float
-        unitQty: Int
-        termDays: Int
+        nickname: String!
+        ability: String!
+        move1: String!
+        move2: String!
+        move3: String!
+        move4: String!
+        item: String!
+        nature: String!
+        hpEV: Int!
+        atkEV: Int!
+        defEV: Int!
+        spaEV: Int!
+        spdefEV: Int!
+        spdEV: Int!
+        tera: String!
     }
 
-    type Auth {
-        token: ID!
-        userId: [User]
+    type Team{
+        _id: ID
+        nickname: String!
+        pk1: [Pokemon]
+        pk2: [Pokemon]
+        pk3: [Pokemon]
+        pk4: [Pokemon]
+        pk5: [Pokemon]
+        pk6: [Pokemon]
+    }
+
+    Input InputTeam{
+        _id: ID
+        nickname: String!
+        pk1: [Pokemon]
+        pk2: [Pokemon]
+        pk3: [Pokemon]
+        pk4: [Pokemon]
+        pk5: [Pokemon]
+        pk6: [Pokemon]
     }
 
     type Query {
-        getMe (_id: ID!): User
-        getAllUsers: [User]
-        getProducts: [Product]
-        getTransTypes: [TransType]
-        getPendingTrans: [User]
-        getPendingAcc (status: String!): [User]
+        getOnePokemon: Pokemon
+        getAllPokemon: [Pokemon]
+        getTeams: [Team]
     }
 
     type Mutation {
-        login (email: String!, password: String!): Auth
+        createPokemon (name: String!, nickname: String!, ability: String!, move1: String!, move2: String, move3: String, move4: String, item: String, nature: String!, hpEV: Int, atkEV: Int, defEV: Int, spaEV: Int, spdefEV: Int, spdEV: Int, tera: String): Pokemon
+        createTeam (nickname: String!): Team
 
-        addUser (firstName: String!, lastName: String! email: String!, password: String!): Auth
-        
-        openAccount (productId: ID!): User
-        approveAccount (acctId: ID!, newStatus: String!): User
-
-        addProduct (name: String!, description: String, unitPrice: Float, unitQty: Int, termDays: Int): Product
-        removeProduct (_id: ID!): Product
-
-        makeTransaction (acctId: ID!, transferId: ID!, amount: Float!, type: ID): User
-        approveTransaction (transId: ID!, status: String, approverId: ID): User      
+        addPokemontoTeam (_id: ID!, pokemonID: ID!, slot: Int!): Team
+        removePokemonfromTeam (_id: ID!, pokemonID: ID!): Team
     }
 `
 module.exports = typeDefs
