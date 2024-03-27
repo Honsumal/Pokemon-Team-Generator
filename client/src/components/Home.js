@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import NavTabs from './NavTabs';
-import Team from './fragments/Team'
+import TeamBuilder from './fragments/TeamBuilder'
 
 
 
@@ -10,9 +10,9 @@ export default function Home() {
     const renderApp = () => {
         switch (currentApp) {
             case "Individual":
-                return <Team />;
+                return <TeamBuilder />;
             default:
-                return <Team />;
+                return <TeamBuilder />;
         }
     };
 
