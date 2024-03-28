@@ -95,7 +95,7 @@ const resolvers = {
             })
         },
 
-        addPokemontoTeam: async (parent, {_id, pokemonID, slot}) => {
+        addPokemontoTeam: async (parent, {_id, pokemonID}) => {
             const query = await Pokemon.findOne({_id: pokemonID})
                 .then((data) => queryData = data)
 
@@ -112,14 +112,7 @@ const resolvers = {
             return add2Team
         },
 
-        removePokemonfromTeam: async (parent, { _id, pokemonID }, context) => {
-
-            // const rPfT = Team.findOneAndUpdate (
-            //     { _id: _id },
-            //     { $set: {"pokemon" = } },
-            //     { new: true, runValidators: true }
-            // )
-
+        removePokemonfromTeam: async (parent, { _id, pokemonID }) => {
             const team2edit = await Team.findOne( 
                 { _id: _id }
             )
@@ -137,7 +130,7 @@ const resolvers = {
                 throw new AuthenticationError('Pokemon not removed from team')
             }
             
-            return rPfT 
+            return team2edit.pokemon.filter((a) => a._id == pokemonID )
         }
     }
 }
