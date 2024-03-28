@@ -124,12 +124,7 @@ db.once('open', async () => {
   await Team.create([
     {
       nickname: 'Oger-W',
-      pk1: [pokemon[0]],
-      pk2: [pokemon[1]],
-      pk3: [pokemon[2]],
-      pk4: [pokemon[3]],
-      pk5: [pokemon[4]],
-      pk6: [pokemon[5]],
+      pokemon: [pokemon[0], pokemon[1], pokemon[2], pokemon[3], pokemon[4], pokemon[5]]
     }
   ]);
 

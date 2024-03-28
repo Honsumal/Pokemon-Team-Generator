@@ -44,27 +44,17 @@ const typeDefs = gql`
     type Team{
         _id: ID
         nickname: String!
-        pk1: [Pokemon]
-        pk2: [Pokemon]
-        pk3: [Pokemon]
-        pk4: [Pokemon]
-        pk5: [Pokemon]
-        pk6: [Pokemon]
+        pokemon: [Pokemon]
     }
 
-    Input InputTeam{
+    input InputTeam{
         _id: ID
         nickname: String!
-        pk1: [Pokemon]
-        pk2: [Pokemon]
-        pk3: [Pokemon]
-        pk4: [Pokemon]
-        pk5: [Pokemon]
-        pk6: [Pokemon]
+        pokemon: [InputPokemon]
     }
 
     type Query {
-        getOnePokemon: Pokemon
+        getOnePokemon (_id: ID!): Pokemon
         getAllPokemon: [Pokemon]
         getTeams: [Team]
     }
@@ -73,7 +63,10 @@ const typeDefs = gql`
         createPokemon (name: String!, nickname: String!, ability: String!, move1: String!, move2: String, move3: String, move4: String, item: String, nature: String!, hpEV: Int, atkEV: Int, defEV: Int, spaEV: Int, spdefEV: Int, spdEV: Int, tera: String): Pokemon
         createTeam (nickname: String!): Team
 
-        addPokemontoTeam (_id: ID!, pokemonID: ID!, slot: Int!): Team
+        deletePokemon (_id: ID!): Pokemon
+        deleteTeam (_id: ID!): Team
+
+        addPokemontoTeam (_id: ID!, pokemonID: ID!): Team
         removePokemonfromTeam (_id: ID!, pokemonID: ID!): Team
     }
 `

@@ -8,9 +8,9 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        getOnePokemon: async (parent, args) => {
-            const {_id} = args
-            const onePokemon = await Pokemon.findOne({_id})
+        getOnePokemon: async (parent, { _id}) => {
+            // const {_id} = args
+            const onePokemon = await Pokemon.findOne({ _id: _id })
 
             if(!onePokemon) {
                 throw new AuthenticationError('Cannot find this Pokemon')
@@ -99,25 +99,9 @@ const resolvers = {
             const query = await Pokemon.findOne({_id: pokemonID})
                 .then((data) => queryData = data)
 
-            let place
-            switch (slot) {
-                case 0:
-                    place = "pk1"
-                case 1:
-                    place = "pk2"
-                case 2:
-                    place = "pk3"
-                case 3:
-                    place = "pk4"
-                case 4:
-                    place = "pk5"
-                default:
-                    place = "pk6"
-                
-            }
             const add2Team = Team.findOneAndUpdate(
                 { _id: _id },
-                { $addToSet: { place: query } },
+                { $addToSet: { pokemon: query } },
                 { new: true, runValidators: true }
             )
 
@@ -128,35 +112,32 @@ const resolvers = {
             return add2Team
         },
 
-        removePokemonfromTeam: async (parent, {_id, slot}) => {
-            let place
-            switch (slot) {
-                case 0:
-                    place = "pk1"
-                case 1:
-                    place = "pk2"
-                case 2:
-                    place = "pk3"
-                case 3:
-                    place = "pk4"
-                case 4:
-                    place = "pk5"
-                default:
-                    place = "pk6"
-                
-            }
+        removePokemonfromTeam: async (parent, { _id, pokemonID }, context) => {
+
+            // const rPfT = Team.findOneAndUpdate (
+            //     { _id: _id },
+            //     { $set: {"pokemon" = } },
+            //     { new: true, runValidators: true }
+            // )
+
+            const team2edit = await Team.findOne( 
+                { _id: _id }
+            )
+            .then((data) => queryData = data)
+
+            let golem = team2edit.pokemon.filter((a) => a._id != pokemonID )
 
             const rPfT = Team.findOneAndUpdate (
                 { _id: _id },
-                { $set: { place: null } },
+                { $set: {pokemon: golem} },
                 { new: true, runValidators: true }
-            )
+                )
 
             if(!rPfT) {
                 throw new AuthenticationError('Pokemon not removed from team')
             }
             
-            return rPfT
+            return rPfT 
         }
     }
 }
