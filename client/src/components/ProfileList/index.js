@@ -1,27 +1,24 @@
 import React from 'react';
 
-const ProfileList = ({ profiles, title }) => {
-  if (!profiles.length) {
-    return <h3>No Profiles Yet</h3>;
+const ProfileList = ({ teams, title }) => {
+  if (!teams.length) {
+    return <h3>No teams Yet</h3>;
   }
 
   return (
     <div>
       <h3 className="text-primary">{title}</h3>
       <div className="flex-row justify-space-between my-4">
-        {profiles &&
-          profiles.map((profile) => (
-            <div key={profile._id} className="col-12 col-xl-6">
+        {teams &&
+          teams.map((team) => (
+            <div key={team._id} className="col-12 col-xl-6">
               <div className="card mb-3">
-                <h4 className="card-header bg-dark text-light p-2 m-0">
-                  {profile.name} <br />
+                <h4 className="card-header bg-light text-light p-2 m-0">
+                  {team.name} <br />
                   <span className="text-white" style={{ fontSize: '1rem' }}>
-                    Nickname: {profile.nickname}
+                    Nickname: {team.nickname}
                   </span>
                   <br></br>
-                  <span className="text-white" style={{ fontSize: '1rem' }}>
-                    Ability: {profile.ability}
-                  </span>
                 </h4>
               </div>
             </div>

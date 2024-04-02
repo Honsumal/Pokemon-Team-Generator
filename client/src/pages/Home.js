@@ -1,12 +1,12 @@
 import React from 'react';
 import ProfileList from '../components/ProfileList';
 import { useQuery } from '@apollo/client';
-import { QUERY_GETALLPOKEMON} from '../utils/queries';
+import { QUERY_GETALLPOKEMON, QUERY_GETALLTEAMS} from '../utils/queries';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_GETALLPOKEMON);
-  const profiles = data?.getAllPokemon || [];
-  console.log(profiles)
+  const { loading, data } = useQuery(QUERY_GETALLTEAMS);
+  const teams = data?.getTeams || [];
+  console.log(teams)
 
   return (
     <main>
@@ -16,8 +16,8 @@ const Home = () => {
             <div>Loading...</div>
           ) : (
             <ProfileList
-              profiles={profiles}
-              title="Here's the current roster of friends..."
+              teams={teams}
+              title="Here are you currently saved teams..."
             />
           )}
         </div>

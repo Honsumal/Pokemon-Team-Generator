@@ -1,18 +1,46 @@
 import React from 'react';
+import {FaPercentage, FaDice} from 'react-icons/fa'
 
-const Header = () => {
+export default function NavTabs({ currentApp, handleAppChange }) {
+
+  // const style = {
+  //   position: 'absolute',
+  //   top: '50%',
+  //   left: '50%',
+  //   transform: 'translate(-50%, -50%)',
+  //   width: 400,
+  //   bgcolor: 'background.paper',
+  //   border: '2px solid #000',
+  //   boxShadow: 24,
+  //   p: 4,
+  // };
+
+
   return (
-    <header className="bg-info text-dark mb-4 py-3 display-flex align-center">
-      <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
-        <h1 className="m-0" style={{ fontSize: '3rem' }}>
-          Tech Friends
-        </h1>
-        <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
-          Meet your new programming pals.
-        </p>
-      </div>
-    </header>
-  );
-};
+    <ul className="nav nav-tabs">
+      <li><h1><a href='https://honsumal.github.io/portfolio/' className='headline'>Alastair Lee</a></h1></li>
 
-export default Header;
+      <li className="nav-item">
+        <a
+          href="#"
+          onClick={() => handleAppChange('Home')}
+          className={currentApp === 'Home' ? 'nav-link active' : 'nav-link'}
+        >
+          <FaPercentage className = 'proj'/>
+        </a>
+      </li>
+    
+      <li className="nav-item">
+        <a
+        href="#"
+        onClick={() => handleAppChange('Home')}
+
+        className={currentApp === 'Individual' ? 'nav-link active' : 'nav-link'}
+        >
+        <FaDice className = 'proj'/>
+        </a>
+      </li>
+    </ul>    
+  );
+}
+

@@ -28,14 +28,13 @@ const resolvers = {
             return Pokemon.find()
         },
 
-        getTeams: async (parent, args) => {
-            const allTeams = await Team.find({})
+        getTeams: async () => {
 
             // if(!allTeams) {
             //     throw new AuthenticationError('Aiyah')
             // }
 
-            return allTeams
+            return Team.find()
         }
     },
     Mutation: {

@@ -54,9 +54,9 @@ const typeDefs = gql`
     }
 
     type Query {
-        getOnePokemon (_id: ID!): Pokemon
+        getOnePokemon (_id: ID!): Pokemon!
         getAllPokemon: [Pokemon]!
-        getTeams: [Team]
+        getTeams: [Team]!
     }
 
     type Mutation {
