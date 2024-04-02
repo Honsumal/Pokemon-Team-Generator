@@ -1,23 +1,73 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type Profile {
-    _id: ID
-    name: String
-    skills: [String]!
-  }
+    type Pokemon {
+        _id: ID
+        name: String
+        nickname: String!
+        ability: String!
+        move1: String!
+        move2: String!
+        move3: String!
+        move4: String!
+        item: String!
+        nature: String!
+        hpEV: Int!
+        atkEV: Int!
+        defEV: Int!
+        spaEV: Int!
+        spdefEV: Int!
+        spdEV: Int!
+        tera: String!
+    }
 
-  type Query {
-    profiles: [Profile]!
-    profile(profileId: ID!): Profile
-  }
+    input InputPokemon {
+        _id: ID
+        name: String!
+        nickname: String!
+        ability: String!
+        move1: String!
+        move2: String!
+        move3: String!
+        move4: String!
+        item: String!
+        nature: String!
+        hpEV: Int!
+        atkEV: Int!
+        defEV: Int!
+        spaEV: Int!
+        spdefEV: Int!
+        spdEV: Int!
+        tera: String!
+    }
 
-  type Mutation {
-    addProfile(name: String!): Profile
-    addSkill(profileId: ID!, skill: String!): Profile
-    removeProfile(profileId: ID!): Profile
-    removeSkill(profileId: ID!, skill: String!): Profile
-  }
-`;
+    type Team{
+        _id: ID
+        nickname: String!
+        pokemon: [Pokemon]
+    }
 
-module.exports = typeDefs;
+    input InputTeam{
+        _id: ID
+        nickname: String!
+        pokemon: [InputPokemon]
+    }
+
+    type Query {
+        getOnePokemon (_id: ID!): Pokemon
+        getAllPokemon: [Pokemon]!
+        getTeams: [Team]
+    }
+
+    type Mutation {
+        createPokemon (name: String!, nickname: String!, ability: String!, move1: String!, move2: String, move3: String, move4: String, item: String, nature: String!, hpEV: Int, atkEV: Int, defEV: Int, spaEV: Int, spdefEV: Int, spdEV: Int, tera: String): Pokemon
+        createTeam (nickname: String!): Team
+
+        deletePokemon (_id: ID!): Pokemon
+        deleteTeam (_id: ID!): Team
+
+        addPokemontoTeam (_id: ID!, pokemonID: ID!): Team
+        removePokemonfromTeam (_id: ID!, pokemonID: ID!): Team
+    }
+`
+module.exports = typeDefs
