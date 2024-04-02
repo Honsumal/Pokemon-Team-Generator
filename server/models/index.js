@@ -1,4 +1,5 @@
-const Team = require('./team');
+const Profile = require('./Profile');
 const Pokemon = require('./pokemon');
+const Team = require('./team')
 
-module.exports = { Team, Pokemon };
+module.exports = { Profile, Pokemon, Team };
