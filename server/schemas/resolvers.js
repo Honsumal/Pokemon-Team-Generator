@@ -66,7 +66,7 @@ const resolvers = {
         },
 
         createTeam: async (parent, {nickname}) => {
-            const team = Team.create({nickname:nickname})
+            return Team.create({nickname:nickname})
 
             // if(!team) {
             //     throw new AuthenticationError('Something went wrong') 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProfileList = ({ teams, title }) => {
+const TeamsHome = ({ teams, title }) => {
   if (!teams.length) {
     return <h3>No teams Yet</h3>;
   }
@@ -28,4 +28,4 @@ const ProfileList = ({ teams, title }) => {
   );
 };
 
-export default ProfileList;
+export default TeamsHome;
