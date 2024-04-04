@@ -59,7 +59,7 @@ const Home = () => {
           ) : (
             <TeamsHome
               teams={teams}
-              title="Here are you currently saved teams..."
+              title="Here are your currently saved teams..."
             />
           )}
         </div>
