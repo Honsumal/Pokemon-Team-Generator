@@ -12,7 +12,7 @@ const TeamsHome = ({ teams, title }) => {
         <div className="flex-row justify-space-between my-4">
           {teams &&
             teams.map((team) => (
-              <TeamCard team = {team}/>
+              <TeamCard key={team._id} team = {team}/>
             ))}
         </div>
       </div>

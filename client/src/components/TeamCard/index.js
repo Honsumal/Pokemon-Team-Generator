@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import { Card, CardHeader, CardContent, CardActions, Collapse, IconButton, Typography, Box, Modal } from '@mui/material'
 import { BsChevronDown } from 'react-icons/bs';
 import ch from "../../utils/ch";
+import PokeCard from "../PokeCard";
 
 export default function TeamCard (team) {
     const style = {
@@ -10,7 +11,21 @@ export default function TeamCard (team) {
         bgcolor: "#eae2b7",
         border: '1px solid #003049',
         boxShadow: 24,
+    };
+
+    const styleModal = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 670,
+        bgcolor: '#003049',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4
       };
+    
+
     const ExpandMore = styled((props) => {
         const { expand, ...other } = props;
         return <IconButton {...other} />;
@@ -31,7 +46,7 @@ export default function TeamCard (team) {
     
     const handleOpen = (p) => {
         setOpen(true)
-        console.log('opened')
+        //console.log('opened')
         setSelected(p)
     }
 
@@ -40,9 +55,9 @@ export default function TeamCard (team) {
     }
 
     return (
-        <Card sx={{ width: 300, m: 0.5 }} style = {{backgroundColor: "#e6af2e"}} className = 'project'>
+        <Card sx={{ width: 300, m: 0.5 }} style = {{backgroundColor: "#e6af2e", transparency: '40%'}} className = 'project'>
             <CardHeader
-                title={t.nickname}
+                title={t.nickname} className="text-center"
             />
             <CardActions disableSpacing>
                 <ExpandMore
@@ -56,22 +71,24 @@ export default function TeamCard (team) {
             </CardActions>
             <Collapse in={exp} timeout="auto" unmountOnExit>
                 <CardContent>
-                    <div className="flex-row justify-space-between">
+                    <div className="flex-row justify-center">
                         {t.pokemon.length 
                             ? t.pokemon.map((p) => {
                                 return(
-                                    <div onClick={() => handleOpen(p)}>
-                                        <Box sx={style}>
+                                    <div key={p._id}>
+                                        <Box sx={style} onClick={() => handleOpen(p)}>
                                             <Typography sx={{margin: 0.5}}>{p.nickname}</Typography>
                                             <Typography sx={{margin: 0.5}}>({ch(p.name)})</Typography>
                                         </Box>
                                         <Modal
-                                            open={false}
+                                            open={open}
                                             onClose={handleClose}
+                                            sx={{bgcolor: '#f77f00'}}
                                             >
-                                            <Typography>
-                                                Salamander
-                                            </Typography>
+                                                <Box sx={styleModal} >
+                                                    <PokeCard p={selected}/>
+                                                </Box>
+
                                         </Modal>
                                     </div>
                                 )
