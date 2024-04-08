@@ -8,7 +8,7 @@ db.once('open', async () => {
 
   const pokemon = await Pokemon.insertMany([
     {
-      name: 'ogerpon-wellspring',
+      name: 'ogerpon-wellspring-mask',
       nickname: 'Ayumu',
       ability: 'water-absorb',
       move1: 'ivy-cudgel',
@@ -22,11 +22,11 @@ db.once('open', async () => {
       defEV: 4,
       spaEV: 0,
       spdefEV: 12,
-      spdEV: 118,
+      spdEV: 188,
       tera: 'water'
     },
     {
-      name: 'tornadus',
+      name: 'tornadus-incarnate',
       nickname: 'Kamikaze',
       ability: 'prankster',
       move1: 'bleakwind-storm',
@@ -34,7 +34,7 @@ db.once('open', async () => {
       move3: 'taunt',
       move4: 'rain-dance',
       item: 'covert-cloak',
-      nature: 'adamant',
+      nature: 'calm',
       hpEV: 252,
       atkEV: 0,
       defEV: 92,
@@ -62,7 +62,7 @@ db.once('open', async () => {
       tera: 'grass'
     },
     {
-      name: 'landorus',
+      name: 'landorus-therian',
       nickname: 'Shinchi',
       ability: 'Intimidate',
       move1: 'stomping-tantrum',
