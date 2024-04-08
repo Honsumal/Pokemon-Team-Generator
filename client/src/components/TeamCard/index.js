@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { styled } from '@mui/material/styles';
-import { Card, CardHeader, CardContent, CardActions, Collapse, IconButton, Typography, Box, Modal } from '@mui/material'
+import { Card, CardHeader, CardContent, CardActions, Collapse, IconButton, Typography, Box, Modal, Button } from '@mui/material'
 import { BsChevronDown } from 'react-icons/bs';
 import ch from "../../utils/ch";
 import PokeCard from "../PokeCard";
@@ -46,13 +46,18 @@ export default function TeamCard (team) {
     
     const handleOpen = (p) => {
         setOpen(true)
-        //console.log('opened')
         setSelected(p)
     }
 
     const handleClose = () => {
         setOpen(false)
     }
+
+    const [nP, setNP] = useState(false)
+    const handleNPOpen = () => setNP(true);
+    const handleNPClose = () => setNP(false);
+
+
 
     return (
         <Card sx={{ width: 300, m: 0.5 }} style = {{backgroundColor: "#e6af2e", transparency: '40%'}} className = 'project'>
@@ -85,7 +90,7 @@ export default function TeamCard (team) {
                                             onClose={handleClose}
                                             sx={{bgcolor: '#f77f00'}}
                                             >
-                                                <Box sx={styleModal} >
+                                                <Box sx={styleModal}>
                                                     <PokeCard p={selected}/>
                                                 </Box>
 
@@ -98,6 +103,12 @@ export default function TeamCard (team) {
                                     Team has no Pokemon
                                 </Typography>
                             </div>
+                        }
+
+                        {(t.pokemon.length < 6) && 
+                            <Box>
+                                <Button variant="contained" onClick={handleNPOpen}>Add a Pokemon</Button>
+                            </Box>
                         }
                     </div>
                     
