@@ -6,8 +6,11 @@ query GetAllPokemon {
       _id
       ability
       atkEV
+      atkIV
       defEV
+      defIV
       hpEV
+      hpIV
       item
       move1
       move2
@@ -17,8 +20,11 @@ query GetAllPokemon {
       nature
       nickname
       spaEV
+      spaIV
       spdEV
+      spdIV
       spdefEV
+      spdefIV
       tera
     }
 }
@@ -30,8 +36,11 @@ query GetOnePokemon($id: ID!) {
       _id
       ability
       atkEV
+      atkIV
       defEV
+      defIV
       hpEV
+      hpIV
       item
       move1
       move2
@@ -41,8 +50,11 @@ query GetOnePokemon($id: ID!) {
       nature
       nickname
       spaEV
+      spaIV
       spdEV
+      spdIV
       spdefEV
+      spdefIV
       tera
     }
 }
@@ -57,8 +69,11 @@ query GetAllTeams {
         _id
         ability
         atkEV
+        atkIV
         defEV
+        defIV
         hpEV
+        hpIV
         item
         move1
         move2
@@ -68,8 +83,11 @@ query GetAllTeams {
         nature
         nickname
         spaEV
+        spaIV
         spdefEV
+        spdefIV
         spdEV
+        spdIV
         tera
       }
     }

@@ -72,6 +72,42 @@ const pokemonSchema = new Schema({
         min: 0,
         default: 0
     },
+    hpIV: {
+        type: Number,
+        required: true,
+        min: 0,
+        default: 31
+    },
+    atkIV: {
+        type: Number,
+        required: true,
+        min: 0,
+        default: 31
+    },
+    defIV: {
+        type: Number,
+        required: true,
+        min: 0,
+        default: 31
+    },
+    spaIV: {
+        type: Number,
+        required: true,
+        min: 0,
+        default: 31
+    },
+    spdefIV: {
+        type: Number,
+        required: true,
+        min: 0,
+        default: 31
+    },
+    spdIV: {
+        type: Number,
+        required: true,
+        min: 0,
+        default: 31
+    },
     tera: {
         type: String
     }    

@@ -38,7 +38,7 @@ const resolvers = {
         }
     },
     Mutation: {
-        createPokemon: async (parent, {name, nickname, ability, move1, move2, move3, move4, item, nature, hpEV, atkEV, defEV, spaEV, spdefEV, spdEV, tera}) => {
+        createPokemon: async (parent, {name, nickname, ability, move1, move2, move3, move4, item, nature, hpEV, atkEV, defEV, spaEV, spdefEV, spdEV, hpIV, atkIV, defIV, spaIV, spdefIV, spdIV, tera}) => {
             const pokemon = Pokemon.create({
                 name: name,
                 nickname: nickname,
@@ -55,6 +55,12 @@ const resolvers = {
                 spaEV: spaEV,
                 spdefEV: spdefEV,
                 spdEV: spdEV,
+                hpIV: hpIV,
+                atkIV: atkIV,
+                defIV: defIV,
+                spaIV: spaIV,
+                spdefIV: spdefIV,
+                spdIV: spdIV,
                 tera: tera
             })
 

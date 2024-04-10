@@ -1,4 +1,4 @@
-export default function statCalc (base, EV, nature, stat) {
+export default function statCalc (base, EV, IV, nature, stat) {
     let mult = 1
     switch (stat) {
         case "atk" :
@@ -96,6 +96,6 @@ export default function statCalc (base, EV, nature, stat) {
                     break
             }
     }
-    const val = (0.5 * (2 * base + 31 + EV / 4) + 5) * mult
+    const val = (0.5 * (2 * base + IV + EV / 4) + 5) * mult
     return Math.floor(val)
 }

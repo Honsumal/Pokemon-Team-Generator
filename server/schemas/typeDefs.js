@@ -18,6 +18,13 @@ const typeDefs = gql`
         spaEV: Int!
         spdefEV: Int!
         spdEV: Int!
+        hpIV: Int!
+        atkIV: Int!
+        defIV: Int!
+        spaIV: Int!
+        spdefIV: Int!
+        spdIV: Int!
+        
         tera: String!
     }
 
@@ -38,6 +45,12 @@ const typeDefs = gql`
         spaEV: Int!
         spdefEV: Int!
         spdEV: Int!
+        hpIV: Int!
+        atkIV: Int!
+        defIV: Int!
+        spaIV: Int!
+        spdefIV: Int!
+        spdIV: Int!
         tera: String!
     }
 
@@ -60,7 +73,7 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        createPokemon (name: String!, nickname: String!, ability: String!, move1: String!, move2: String, move3: String, move4: String, item: String, nature: String!, hpEV: Int, atkEV: Int, defEV: Int, spaEV: Int, spdefEV: Int, spdEV: Int, tera: String): Pokemon
+        createPokemon (name: String!, nickname: String!, ability: String!, move1: String!, move2: String, move3: String, move4: String, item: String, nature: String!, hpEV: Int, atkEV: Int, defEV: Int, spaEV: Int, spdefEV: Int, spdEV: Int, hpIV: Int, atkIV: Int, defIV: Int, spaIV: Int, spdefIV: Int, spdIV: Int, tera: String): Pokemon
         createTeam (nickname: String!): Team
 
         deletePokemon (_id: ID!): Pokemon

@@ -23,6 +23,12 @@ db.once('open', async () => {
       spaEV: 0,
       spdefEV: 12,
       spdEV: 188,
+      hpIV: 31,
+      atkIV: 31,
+      defIV: 31,
+      spaIV: 31,
+      spdefIV: 31,
+      spdIV: 31,
       tera: 'water'
     },
     {
@@ -41,6 +47,12 @@ db.once('open', async () => {
       spaEV: 4,
       spdefEV: 132,
       spdEV: 28,
+      hpIV: 31,
+      atkIV: 0,
+      defIV: 31,
+      spaIV: 31,
+      spdefIV: 31,
+      spdIV: 31,
       tera: 'dark'
     },
     {
@@ -59,6 +71,12 @@ db.once('open', async () => {
       spaEV: 36,
       spdefEV: 164,
       spdEV: 28,
+      hpIV: 31,
+      atkIV: 31,
+      defIV: 31,
+      spaIV: 31,
+      spdefIV: 31,
+      spdIV: 31,
       tera: 'grass'
     },
     {
@@ -77,6 +95,12 @@ db.once('open', async () => {
       spaEV: 0,
       spdefEV: 4,
       spdEV: 204,
+      hpIV: 31,
+      atkIV: 31,
+      defIV: 31,
+      spaIV: 31,
+      spdefIV: 31,
+      spdIV: 31,
       tera: 'flying'
     },
     {
@@ -95,6 +119,12 @@ db.once('open', async () => {
       spaEV: 0,
       spdefEV: 252,
       spdEV: 92,
+      hpIV: 31,
+      atkIV: 31,
+      defIV: 31,
+      spaIV: 31,
+      spdefIV: 31,
+      spdIV: 31,
       tera: 'grass'
     },
     {
@@ -113,6 +143,12 @@ db.once('open', async () => {
       spaEV: 0,
       spdefEV: 0,
       spdEV: 252,
+      hpIV: 31,
+      atkIV: 31,
+      defIV: 31,
+      spaIV: 31,
+      spdefIV: 31,
+      spdIV: 31,
       tera: 'stellar'
     },
   ])

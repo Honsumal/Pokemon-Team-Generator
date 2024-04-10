@@ -31,19 +31,19 @@ export default function PokeCard (pokemon) {
                         //console.log(hp)
                         break
                     case 'attack':
-                        setAtk(statCalc(list[i].base_stat, p.atkEV, p.nature, "atk"));
+                        setAtk(statCalc(list[i].base_stat, p.atkEV, p.atkIV, p.nature, "atk"));
                         break
                     case 'defense':
-                        setDef(statCalc(list[i].base_stat, p.defEV, p.nature, "def"));
+                        setDef(statCalc(list[i].base_stat, p.defEV, p.defIV, p.nature, "def"));
                         break
                     case 'special-attack':
-                        setSpa(statCalc(list[i].base_stat, p.spaEV, p.nature, "spa"));
+                        setSpa(statCalc(list[i].base_stat, p.spaEV, p.spaIV, p.nature, "spa"));
                         break
                     case 'special-defense':
-                        setSdf(statCalc(list[i].base_stat, p.spdefEV, p.nature, "sdf"));
+                        setSdf(statCalc(list[i].base_stat, p.spdefEV, p.spdefIV, p.nature, "sdf"));
                         break
                     default:
-                        setSpd(statCalc(list[i].base_stat, p.spdEV, p.nature, "spd"));
+                        setSpd(statCalc(list[i].base_stat, p.spdEV, p.spdIV, p.nature, "spd"));
                         break
                 }
             }
