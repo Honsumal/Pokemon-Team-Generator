@@ -4,6 +4,7 @@ import { Card, CardHeader, CardContent, CardActions, Collapse, IconButton, Typog
 import { BsChevronDown } from 'react-icons/bs';
 import ch from "../../utils/ch";
 import PokeCard from "../PokeCard";
+import AddPokemon from "../AddPokemon";
 
 export default function TeamCard (team) {
     const style = {
@@ -105,10 +106,21 @@ export default function TeamCard (team) {
                             </div>
                         }
 
-                        {(t.pokemon.length < 6) && 
-                            <Box>
-                                <Button variant="contained" onClick={handleNPOpen}>Add a Pokemon</Button>
-                            </Box>
+                        {(t.pokemon.length < 6) &&
+                            <div> 
+                                <Box>
+                                    <Button variant="contained" onClick={handleNPOpen}>Add a Pokemon</Button>
+                                </Box>
+                                <Modal
+                                    open={nP}
+                                    onClose={handleNPClose}
+                                    sx={{bgcolor: '#f77f00'}}
+                                    >
+                                        <Box sx={styleModal}>
+                                            <AddPokemon team={t}/>
+                                        </Box>
+                                </Modal>
+                            </div>
                         }
                     </div>
                     
