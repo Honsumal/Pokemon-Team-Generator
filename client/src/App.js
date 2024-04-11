@@ -4,6 +4,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import Home from './pages/Home';
 import NavTabs from './components/Header';
 import Footer from './components/Footer';
+import AllPokemon from './pages/AllPokemon';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -14,9 +15,10 @@ function App() {
   const [currentApp, setCurrentApp] = useState('Home');
 
   const renderApp = () => {
+    console.log(currentApp)
     switch(currentApp) {
-      case "Individual":
-        return <Home />
+      case 'Pokemon':
+        return <AllPokemon />
       default:
         return <Home />
     }
