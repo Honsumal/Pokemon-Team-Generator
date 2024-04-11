@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Typography, Select, MenuItem} from '@mui/material'
-import ch from '../../utils/ch';
+import ch from '../../../utils/ch';
 
 export default function SelectBox({label, list, val, setSub}) {
     function handleInput(e) {

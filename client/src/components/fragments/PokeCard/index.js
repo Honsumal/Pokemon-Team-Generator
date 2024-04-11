@@ -1,8 +1,8 @@
 import { Card, CardContent, CardHeader, Typography, Box } from "@mui/material";
 import React, {useEffect, useState} from "react";
-import ch from "../../utils/ch";
-import hpCalc from "../../utils/hpCalc";
-import statCalc from "../../utils/statCalc";
+import ch from "../../../utils/ch";
+import hpCalc from "../../../utils/hpCalc";
+import statCalc from "../../../utils/statCalc";
 
 export default function PokeCard (pokemon) {
     let p = pokemon.p
@@ -27,7 +27,7 @@ export default function PokeCard (pokemon) {
     
                 switch (list[i].stat.name) {
                     case 'hp':
-                        setHp(hpCalc(list[i].base_stat, p.hpEV));
+                        setHp(hpCalc(list[i].base_stat, p.hpEV, p.hpIV));
                         //console.log(hp)
                         break
                     case 'attack':

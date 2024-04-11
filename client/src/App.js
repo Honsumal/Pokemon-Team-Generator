@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 import Home from './pages/Home';
-import NavTabs from './components/Header';
-import Footer from './components/Footer';
+import NavTabs from './components/fragments/Header';
+import Footer from './components/fragments/Footer';
 import AllPokemon from './pages/AllPokemon';
 
 const client = new ApolloClient({

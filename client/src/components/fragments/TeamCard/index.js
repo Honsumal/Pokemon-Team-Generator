@@ -3,8 +3,7 @@ import { styled } from '@mui/material/styles';
 import { Card, CardHeader, CardContent, CardActions, Collapse, IconButton, Typography, Box, Modal, Button } from '@mui/material'
 import { BsChevronDown } from 'react-icons/bs';
 import ch from "../../../utils/ch";
-import PokeCard from "../../PokeCard";
-import AddPokemon from "../../AddPokemon";
+import PokeCard from "../PokeCard";
 
 export default function TeamCard (team) {
     const style = {

@@ -20,16 +20,24 @@ const pokemonSchema = new Schema({
         required: true
     },
     move2: {
-        type: String
+        type: String,
+        required: true,
+        default: '(none)'
     },
     move3: {
-        type: String
+        type: String,
+        required: true,
+        default: '(none)'
     },
     move4: {
-        type: String
+        type: String,
+        required: true,
+        default: '(none)'
     },
     item: {
-        type: String
+        type: String,
+        required: true,
+        default: '(none)'
     },
     nature: {
         type: String,
@@ -109,7 +117,8 @@ const pokemonSchema = new Schema({
         default: 31
     },
     tera: {
-        type: String
+        type: String,
+        default: '(none)'
     }    
 });
 

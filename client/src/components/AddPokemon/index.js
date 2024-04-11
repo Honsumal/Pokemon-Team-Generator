@@ -2,21 +2,19 @@ import React, {useEffect, useState} from 'react'
 import { Card, CardContent, CardHeader, Typography, Box, TextField, Button } from "@mui/material"
 import hc from '../../utils/hc'
 import ch from '../../utils/ch'
-import SubmitBox from '../SubmitBox'
-import SelectBox from '../SelectBox'
+import SubmitBox from '../fragments/SubmitBox'
+import SelectBox from '../fragments/SelectBox'
 import { useMutation } from '@apollo/client'
 import { MUTATION_CREATEPOKEMON } from '../../utils/mutations'
 
-export default function AddPokemon (team) {
-    //const t = team.team
-
+export default function AddPokemon ({handleClose}) {
     const [p, setP] = useState([])
     const [pi, setPi] = useState('')
     const [ni, setNi] = useState('')
     const [a, setA] = useState('')
     const [na, setNa] = useState('')
     const [te, setTe] = useState('')
-    const [i, setI] = useState('')
+    const [i, setI] = useState('(none)')
     const [m1, setM1] = useState('')
     const [m2, setM2] = useState('')
     const [m3, setM3] = useState('')
@@ -112,10 +110,10 @@ export default function AddPokemon (team) {
                     nickname: ni,
                     ability: a,
                     move1: m1,
-                    move2: m2,
-                    move3: m3,
-                    move4: m4,
-                    item: ch(i),
+                    move2: m2 || "(none)",
+                    move3: m3 || "(none)",
+                    move4: m4 || "(none)",
+                    item: ch(i) || "(none)",
                     nature: na,
                     hpEv: parseInt(hpEV),
                     atkEv: parseInt(atkEV),
@@ -136,7 +134,8 @@ export default function AddPokemon (team) {
             console.error(err);
             console.log(error, 'Pokemon could not be created')
         }
-        console.log(ni + ' was added' )
+        //console.log(ni + ' was added' )
+        handleClose()
     }
 
     function handleInput(e){
