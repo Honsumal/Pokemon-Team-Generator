@@ -69,7 +69,7 @@ const Home = () => {
           aria-labelledby="newteammaker"
           aria-describedby="new team button"
         >
-          <Box sx={style}>
+          <Box sx={style} className='flex-row justify-center'>
               <Typography variant="h6" component="h3">
                 Enter New Team Nickname:
               </Typography>

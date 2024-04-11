@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { QUERY_GETALLPOKEMON } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 import PokemonHome from '../components/PokemonHome';

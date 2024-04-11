@@ -4,6 +4,7 @@ import { Card, CardHeader, CardContent, CardActions, Collapse, IconButton, Typog
 import { BsChevronDown } from 'react-icons/bs';
 import ch from "../../../utils/ch";
 import PokeCard from "../PokeCard";
+import AddPokemon2Team from "../AddPokemon2Team";
 
 export default function TeamCard (team) {
     const style = {
@@ -34,6 +35,8 @@ export default function TeamCard (team) {
         bgcolor: '#003049',
         border: '2px solid #000',
         boxShadow: 24,
+        maxHeight: 600,
+        overflowY: 'auto',
         p: 4
       };
     
@@ -97,16 +100,17 @@ export default function TeamCard (team) {
                                             <Typography sx={{margin: 0.5}}>{p.nickname}</Typography>
                                             <Typography sx={{margin: 0.5}}>({ch(p.name)})</Typography>
                                         </Box>
-                                        <Modal
-                                            open={open}
-                                            onClose={handleClose}
-                                            sx={{bgcolor: '#f77f00'}}
-                                            >
-                                                <Box sx={styleModal}>
-                                                    <PokeCard p={selected}/>
-                                                </Box>
-
-                                        </Modal>
+                                        <Box>
+                                            <Modal
+                                                open={open}
+                                                onClose={handleClose}
+                                                sx={{bgcolor: '#f77f00'}}
+                                                >
+                                                    <Box sx={styleModal}>
+                                                        <PokeCard p={selected}/>
+                                                    </Box>
+                                            </Modal>
+                                        </Box>
                                     </div>
                                 )
                             })
@@ -128,7 +132,7 @@ export default function TeamCard (team) {
                                     sx={{bgcolor: '#f77f00'}}
                                     >
                                         <Box sx={styleModal2}>
-                                            Add Pokemon Button
+                                            <AddPokemon2Team team = {t} />
                                         </Box>
                                 </Modal>
                             </div>
