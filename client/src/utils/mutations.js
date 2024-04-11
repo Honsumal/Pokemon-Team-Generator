@@ -14,11 +14,11 @@ mutation Mutation($id: ID!, $pokemonId: ID!) {
 `
 
 export const MUTATION_CREATEPOKEMON = gql`
-mutation Mutation($name: String!, $nickname: String!, $ability: String!, $move1: String!, $nature: String!, $move2: String, $move3: String, $move4: String, $item: String, $hpEv: Int, $atkEv: Int, $defEv: Int, $spaEv: Int, $spdefEv: Int, $spdEv: Int, $tera: String) {
-    createPokemon(name: $name, nickname: $nickname, ability: $ability, move1: $move1, nature: $nature, move2: $move2, move3: $move3, move4: $move4, item: $item, hpEV: $hpEv, atkEV: $atkEv, defEV: $defEv, spaEV: $spaEv, spdefEV: $spdefEv, spdEV: $spdEv, tera: $tera) {
-      _id
-      name
-    }
+mutation Mutation($name: String!, $nickname: String!, $ability: String!, $move1: String!, $nature: String!, $move2: String, $move3: String, $move4: String, $item: String, $hpEv: Int, $atkEv: Int, $defEv: Int, $spaEv: Int, $spdefEv: Int, $spdEv: Int, $hpIv: Int, $atkIv: Int, $defIv: Int, $spaIv: Int, $spdefIv: Int, $spdIv: Int, $tera: String) {
+  createPokemon(name: $name, nickname: $nickname, ability: $ability, move1: $move1, nature: $nature, move2: $move2, move3: $move3, move4: $move4, item: $item, hpEV: $hpEv, atkEV: $atkEv, defEV: $defEv, spaEV: $spaEv, spdefEV: $spdefEv, spdEV: $spdEv, hpIV: $hpIv, atkIV: $atkIv, defIV: $defIv, spaIV: $spaIv, spdefIV: $spdefIv, spdIV: $spdIv, tera: $tera) {
+    _id
+    name
+  }
 }
 `
 

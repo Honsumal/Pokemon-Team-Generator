@@ -4,9 +4,11 @@ import hc from '../../utils/hc'
 import ch from '../../utils/ch'
 import SubmitBox from '../SubmitBox'
 import SelectBox from '../SelectBox'
+import { useMutation } from '@apollo/client'
+import { MUTATION_CREATEPOKEMON } from '../../utils/mutations'
 
 export default function AddPokemon (team) {
-    const t = team.team
+    //const t = team.team
 
     const [p, setP] = useState([])
     const [pi, setPi] = useState('')
@@ -14,6 +16,7 @@ export default function AddPokemon (team) {
     const [a, setA] = useState('')
     const [na, setNa] = useState('')
     const [te, setTe] = useState('')
+    const [i, setI] = useState('')
     const [m1, setM1] = useState('')
     const [m2, setM2] = useState('')
     const [m3, setM3] = useState('')
@@ -35,6 +38,8 @@ export default function AddPokemon (team) {
     const [aL, setAL] = useState([])
     const [tL, setTL] = useState([])
     const [mL, setML] = useState([])
+
+    const [newPokemon, { error }] = useMutation(MUTATION_CREATEPOKEMON)
 
     useEffect(() => {
         fetch('https://pokeapi.co/api/v2/nature')
@@ -94,9 +99,44 @@ export default function AddPokemon (team) {
         }
     }
     
-    function handleNSubmit (e) {
+    const handleNSubmit = async (e) => {
         e.preventDefault()
-        console.log(ni, a)
+        // console.log(ni, a, na, te, ch(i))
+        // console.log(m1, m2, m3 ,m4)
+        console.log(hpIV, atkIV)
+        
+        try{
+            const {data} = await newPokemon({
+                variables: {
+                    name: hc(pi),
+                    nickname: ni,
+                    ability: a,
+                    move1: m1,
+                    move2: m2,
+                    move3: m3,
+                    move4: m4,
+                    item: ch(i),
+                    nature: na,
+                    hpEv: parseInt(hpEV),
+                    atkEv: parseInt(atkEV),
+                    defEv: parseInt(defEV),
+                    spaEv: parseInt(spaEV),
+                    spdefEv: parseInt(sdfEV),
+                    spdEv: parseInt(spdEV),
+                    hpIv: parseInt(hpIV),
+                    atkIv: parseInt(atkIV),
+                    defIv: parseInt(defIV),
+                    spaIv: parseInt(spaIV),
+                    spdefIv: parseInt(sdfIV),
+                    spdIv: parseInt(spdIV),
+                    tera: te
+                }
+            });
+        } catch (err) {
+            console.error(err);
+            console.log(error, 'Pokemon could not be created')
+        }
+        console.log(ni + ' was added' )
     }
 
     function handleInput(e){
@@ -108,15 +148,19 @@ export default function AddPokemon (team) {
         <div>
             <Card sx={{bgcolor: "#eae2b7"}}>
                 <CardHeader
-                    title={'Add a Pokemon to ' + t.nickname} className='text-center'
+                    title={"Create a New Pokemon"} className='text-center'
                     />
                 <CardContent>
                     <div>
                         <div className="flex-row justify-center">
                             <Box>
                                 <form onSubmit={handlePSubmit}>
-                                    <span><Typography variant='h5'>Pokemon:</Typography></span>
-                                    <span><TextField variant="outlined" sx={{marginLeft: '10px'}} size='small' onInput={handleInput}/></span>
+                                <Box> 
+                                    <div>
+                                        <Typography variant='h5'>Pokemon:</Typography>
+                                        <TextField variant="outlined" sx={{marginLeft: '10px', width: 250}} size='small' onInput={handleInput}/>
+                                    </div>
+                                </Box>
                                 </form>
                             </Box>
 
@@ -125,19 +169,41 @@ export default function AddPokemon (team) {
                             <Box>
                                 {p.abilities &&
                                     <form onSubmit={handleNSubmit}>
-                                        <SubmitBox label={"Nickname"} setSub={setNi} />
-
-                                        <SelectBox label={"Ability"} list={aL} val={a} setSub={setA}/>
-                                        <SelectBox label={"Nature"} list={nL} val={na} setSub={setNa}/>
-                                        <SelectBox label={"Tera Type"} list={tL} val={te} setSub={setTe}/>
-
-                                        <SelectBox label={"Move 1"} list={mL} val={m1} setSub={setM1}/>
-                                        <SelectBox label={"Move 2"} list={mL} val={m2} setSub={setM2}/>
-                                        <SelectBox label={"Move 3"} list={mL} val={m3} setSub={setM3}/>
-                                        <SelectBox label={"Move 4"} list={mL} val={m4} setSub={setM4}/>
-
+                                        <SubmitBox w={250} label={"Nickname"} setSub={setNi} />
+                                        <div className="flex-row justify-center">
+                                            <SelectBox label={"Ability"} list={aL} val={a} setSub={setA}/>
+                                            <SelectBox label={"Nature"} list={nL} val={na} setSub={setNa}/>
+                                            <SelectBox label={"Tera Type"} list={tL} val={te} setSub={setTe}/>
+                                            <SubmitBox label={"Held Item"} setSub={setI} />
+                                        </div>
+                                        <div className="flex-row justify-center">
+                                            <SelectBox label={"Move 1"} list={mL} val={m1} setSub={setM1}/>
+                                            <SelectBox label={"Move 2"} list={mL} val={m2} setSub={setM2}/>
+                                            <SelectBox label={"Move 3"} list={mL} val={m3} setSub={setM3}/>
+                                            <SelectBox label={"Move 4"} list={mL} val={m4} setSub={setM4}/>
+                                        </div>
+                                        <div className="flex-row justify-center">
+                                            <SubmitBox w={100} label={"HP EV"} setSub={setHpEV} />
+                                            <SubmitBox w={100} label={"ATK EV"} setSub={setAtkEV} />
+                                            <SubmitBox w={100} label={"DEF EV"} setSub={setDefEV} />
+                                            <SubmitBox w={100} label={"SPA EV"} setSub={setSpaEV} />
+                                            <SubmitBox w={100} label={"SDF EV"} setSub={setSdfEV} />
+                                            <SubmitBox w={100} label={"SPD EV"} setSub={setSpdEV} />
+                                        </div>
+                                        <div className="flex-row justify-center">
+                                            <SubmitBox w={100} label={"HP IV"} setSub={setHpIV} />
+                                            <SubmitBox w={100} label={"ATK IV"} setSub={setAtkIV} />
+                                            <SubmitBox w={100} label={"DEF IV"} setSub={setDefIV} />
+                                            <SubmitBox w={100} label={"SPA IV"} setSub={setSpaIV} />
+                                            <SubmitBox w={100} label={"SDF IV"} setSub={setSdfIV} />
+                                            <SubmitBox w={100} label={"SPD IV"} setSub={setSpdIV} />
+                                        </div>
                                         
-                                        <Button variant="contained" onClick={handleNSubmit}>Add Pokemon</Button>
+                                        <br></br>
+                                        <div className="flex-row justify-center">
+                                            <Button variant="contained" onClick={handleNSubmit}>Add Pokemon</Button>
+                                        </div>                              
+
                                     </form>
                                 }
                             </Box>

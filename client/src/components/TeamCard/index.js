@@ -19,7 +19,19 @@ export default function TeamCard (team) {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 670,
+        width: 700,
+        bgcolor: '#003049',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4
+      };
+
+    const styleModal2 = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 1200,
         bgcolor: '#003049',
         border: '2px solid #000',
         boxShadow: 24,
@@ -116,7 +128,7 @@ export default function TeamCard (team) {
                                     onClose={handleNPClose}
                                     sx={{bgcolor: '#f77f00'}}
                                     >
-                                        <Box sx={styleModal}>
+                                        <Box sx={styleModal2}>
                                             <AddPokemon team={t}/>
                                         </Box>
                                 </Modal>

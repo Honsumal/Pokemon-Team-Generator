@@ -9,7 +9,7 @@ export default function SelectBox({label, list, val, setSub}) {
     }
     return(
         <div className="flex-row justify-center">
-            <Box>
+            <Box sx={{margin: 0.5}}>
                 <div>
                     <Typography variant='h5'>{label}</Typography>
                     <Select

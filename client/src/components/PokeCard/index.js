@@ -85,7 +85,7 @@ export default function PokeCard (pokemon) {
                    Stats
                 </Typography>
                 <div>
-                    {/* {Put Graph here is possible} */}
+                    {/* {Put Graph here if possible} */}
                     <Typography>
                         HP: {hp}
                     </Typography>
