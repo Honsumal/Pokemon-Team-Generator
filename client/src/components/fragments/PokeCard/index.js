@@ -14,7 +14,7 @@ export default function PokeCard (pokemon) {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 700,
+        width: 1000,
         bgcolor: '#003049',
         border: '2px solid #000',
         boxShadow: 24,
@@ -46,7 +46,6 @@ export default function PokeCard (pokemon) {
                 switch (list[i].stat.name) {
                     case 'hp':
                         setHp(hpCalc(list[i].base_stat, p.hpEV, p.hpIV));
-                        //console.log(hp)
                         break
                     case 'attack':
                         setAtk(statCalc(list[i].base_stat, p.atkEV, p.atkIV, p.nature, "atk"));
@@ -156,7 +155,7 @@ export default function PokeCard (pokemon) {
                             sx={{bgcolor: '#f77f00'}}
                             >
                                 <Box sx={styleModal}>
-                                    <EditPokemon p = {pokemon} />
+                                    <EditPokemon pokemon = {pokemon} />
                                 </Box>
                         </Modal>
                     </Box>

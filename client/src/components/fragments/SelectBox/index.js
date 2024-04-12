@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, Typography, Select, MenuItem} from '@mui/material'
 import ch from '../../../utils/ch';
 
-export default function SelectBox({label, list, val, setSub}) {
+export default function SelectBox({label, list, val, setSub, def}) {
     function handleInput(e) {
         e.preventDefault()
         setSub(e.target.value)
@@ -21,7 +21,7 @@ export default function SelectBox({label, list, val, setSub}) {
                         {list.length && 
                             list.map((i) => {
                                 return(
-                                    <MenuItem value={i}>{ch(i)}</MenuItem>
+                                    <MenuItem value={i} key={i}>{ch(i)}</MenuItem>
                                 )
                             })
                         }
