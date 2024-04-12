@@ -1,11 +1,25 @@
-import { Card, CardContent, CardHeader, Typography, Box } from "@mui/material";
+import { Card, CardContent, CardHeader, Typography, Box, Modal, Button } from "@mui/material";
 import React, {useEffect, useState} from "react";
 import ch from "../../../utils/ch";
 import hpCalc from "../../../utils/hpCalc";
 import statCalc from "../../../utils/statCalc";
+import EditPokemon from "../EditPokemon";
 
 export default function PokeCard (pokemon) {
     let p = pokemon.p
+
+    
+    const styleModal = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 700,
+        bgcolor: '#003049',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4
+      };
 
     const [hp, setHp] = useState('0')
     const [atk, setAtk] = useState('0')
@@ -13,6 +27,10 @@ export default function PokeCard (pokemon) {
     const [spa, setSpa] = useState('0')
     const [sdf, setSdf] = useState('0')
     const [spd, setSpd] = useState('0')
+
+    const [open, setOpen] = useState(false);
+    const handleOpenEdit = () => setOpen(true);
+    const handleCloseEdit = () => setOpen(false);
 
     useEffect(() => {
         function findStats () {
@@ -129,7 +147,20 @@ export default function PokeCard (pokemon) {
                         </Typography>
                     </Box>
                 </div>
-
+                <div className="flex-row justify-center">
+                    <Button variant="contained" onClick={handleOpenEdit}>Edit Pokemon</Button>
+                    <Box>
+                        <Modal
+                            open={open}
+                            onClose={handleCloseEdit}
+                            sx={{bgcolor: '#f77f00'}}
+                            >
+                                <Box sx={styleModal}>
+                                    <EditPokemon p = {pokemon} />
+                                </Box>
+                        </Modal>
+                    </Box>
+                </div>
             </CardContent>
         </Card>
     )

@@ -154,12 +154,12 @@ export default function AddPokemon ({handleClose}) {
                         <div className="flex-row justify-center">
                             <Box>
                                 <form onSubmit={handlePSubmit}>
-                                <Box> 
-                                    <div>
-                                        <Typography variant='h5'>Pokemon:</Typography>
-                                        <TextField variant="outlined" sx={{marginLeft: '10px', width: 250}} size='small' onInput={handleInput}/>
-                                    </div>
-                                </Box>
+                                    <Box> 
+                                        <div>
+                                            <Typography variant='h5'>Pokemon:</Typography>
+                                            <TextField variant="outlined" sx={{marginLeft: '10px', width: 250}} size='small' onInput={handleInput}/>
+                                        </div>
+                                    </Box>
                                 </form>
                             </Box>
 

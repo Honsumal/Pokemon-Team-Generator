@@ -5,6 +5,7 @@ import { BsChevronDown } from 'react-icons/bs';
 import ch from "../../../utils/ch";
 import PokeCard from "../PokeCard";
 import AddPokemon2Team from "../AddPokemon2Team";
+import EditTeamName from "../EditTeamName";
 
 export default function TeamCard (team) {
     const style = {
@@ -72,7 +73,9 @@ export default function TeamCard (team) {
     const handleNPOpen = () => setNP(true);
     const handleNPClose = () => setNP(false);
 
-
+    const [nN, setNN] = useState(false)
+    const handleNNOpen = () => setNN(true);
+    const handleNNClose = () => setNN(false);
 
     return (
         <Card sx={{ width: 300, m: 0.5 }} style = {{backgroundColor: "#e6af2e", transparency: '40%'}} className = 'project'>
@@ -137,6 +140,21 @@ export default function TeamCard (team) {
                                 </Modal>
                             </div>
                         }
+
+                        <div>
+                            <Box sx={{marginTop: 1}}>
+                                <Button variant="contained" onClick={handleNNOpen}>Edit Team Name</Button>
+                            </Box>
+                            <Modal
+                                open={nN}
+                                onClose={handleNNClose}
+                                sx={{bgcolor: '#f77f00'}}
+                                >
+                                    <Box sx={styleModal2}>
+                                        <EditTeamName team = {t} hC={handleNNClose}/>
+                                    </Box>
+                            </Modal>
+                        </div>
                     </div>
                     
                 </CardContent>
