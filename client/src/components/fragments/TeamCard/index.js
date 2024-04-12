@@ -100,7 +100,7 @@ export default function TeamCard (team) {
                                             <Typography sx={{margin: 0.5}}>{p.nickname}</Typography>
                                             <Typography sx={{margin: 0.5}}>({ch(p.name)})</Typography>
                                         </Box>
-                                        <Box>
+                                        <Box sx={{margin: 1}}>
                                             <Modal
                                                 open={open}
                                                 onClose={handleClose}
