@@ -155,7 +155,7 @@ export default function PokeCard (pokemon) {
                             sx={{bgcolor: '#f77f00'}}
                             >
                                 <Box sx={styleModal}>
-                                    <EditPokemon pokemon = {pokemon} />
+                                    <EditPokemon pokemon = {pokemon} handleClose={handleCloseEdit} />
                                 </Box>
                         </Modal>
                     </Box>

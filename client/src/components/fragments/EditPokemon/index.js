@@ -4,10 +4,13 @@ import ch from "../../../utils/ch";
 import hc from "../../../utils/hc";
 import SubmitBox from "../SubmitBox";
 import SelectBox from "../SelectBox";
+import { useMutation } from "@apollo/client";
+import { MUTATION_EDITPOKEMON } from "../../../utils/mutations";
 
-export default function EditPokemon ({pokemon}){
+export default function EditPokemon ({pokemon, handleClose}){
     let p = pokemon.p
-    //const [pi, setPi] = useState('')
+    const [editPokemon, {error}] = useMutation(MUTATION_EDITPOKEMON)
+
     const [ni, setNi] = useState(p.nickname)
     const [a, setA] = useState(p.ability)
     const [na, setNa] = useState(p.nature)
@@ -82,6 +85,7 @@ export default function EditPokemon ({pokemon}){
         
         //Move List
         let m_list = [];
+        m_list.push('(none)')
         for (let i = 0; i < d.moves.length; i++) {
             m_list.push(d.moves[i].move.name)
             
@@ -91,15 +95,48 @@ export default function EditPokemon ({pokemon}){
 
     }, [])
 
-    function handleSubmit () {
+    async function handleSubmit () {
         console.log("submitted")
+        try {
+            const {data} = await editPokemon({
+                variables: {
+                    id: p._id,
+                    name: p.name,
+                    nickname: ni,
+                    ability: a,
+                    move1: m1,
+                    move2: m2 || "(none)",
+                    move3: m3 || "(none)",
+                    move4: m4 || "(none)",
+                    item: ch(i) || "(none)",
+                    nature: na,
+                    hpEv: parseInt(hpEV),
+                    atkEv: parseInt(atkEV),
+                    defEv: parseInt(defEV),
+                    spaEv: parseInt(spaEV),
+                    spdefEv: parseInt(sdfEV),
+                    spdEv: parseInt(spdEV),
+                    hpIv: parseInt(hpIV),
+                    atkIv: parseInt(atkIV),
+                    defIv: parseInt(defIV),
+                    spaIv: parseInt(spaIV),
+                    spdefIv: parseInt(sdfIV),
+                    spdIv: parseInt(spdIV),
+                    tera: te
+                }
+            });
+        } catch (err) {
+            console.error(err);
+            console.log(error, 'Pokemon could not be edited')
+        }
+        handleClose()
     }
 
     return(
         <div>
             <Card sx={{bgcolor: '#eae2b7'}}>
                 <CardHeader
-                    title={"Edit: "+ ch(p.nickname) + " (" + ch(p.name) + ")"}
+                    title={"Edit: "+ p.nickname + " (" + ch(p.name) + ")"}
                     className='text-center'
                 />
                 <CardContent>

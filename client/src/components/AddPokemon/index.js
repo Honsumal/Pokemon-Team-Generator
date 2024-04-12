@@ -103,7 +103,7 @@ export default function AddPokemon ({handleClose}) {
         // console.log(m1, m2, m3 ,m4)
         console.log(hpIV, atkIV)
         
-        try{
+        try {
             const {data} = await newPokemon({
                 variables: {
                     name: hc(pi),
