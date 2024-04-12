@@ -76,6 +76,9 @@ const typeDefs = gql`
         createPokemon (name: String!, nickname: String!, ability: String!, move1: String!, move2: String, move3: String, move4: String, item: String, nature: String!, hpEV: Int, atkEV: Int, defEV: Int, spaEV: Int, spdefEV: Int, spdEV: Int, hpIV: Int, atkIV: Int, defIV: Int, spaIV: Int, spdefIV: Int, spdIV: Int, tera: String): Pokemon
         createTeam (nickname: String!): Team
 
+        editPokemon (_id: ID!, name: String!, nickname: String!, ability: String!, move1: String!, move2: String, move3: String, move4: String, item: String, nature: String!, hpEV: Int, atkEV: Int, defEV: Int, spaEV: Int, spdefEV: Int, spdEV: Int, hpIV: Int, atkIV: Int, defIV: Int, spaIV: Int, spdefIV: Int, spdIV: Int, tera: String): Pokemon
+        editTeamName (_id: ID!, nickname: String!): Team
+
         deletePokemon (_id: ID!): Pokemon
         deleteTeam (_id: ID!): Team
 

@@ -85,24 +85,23 @@ export default function PokeCard (pokemon) {
                    Stats
                 </Typography>
                 <div>
-                    {/* {Put Graph here if possible} */}
                     <Typography>
-                        HP: {hp}
+                        HP: <b>{hp}</b> [EV: {p.hpEV} | IV: {p.hpIV}]
                     </Typography>
                     <Typography>
-                        Attack: {atk}
+                        Attack: <b>{atk}</b> [EV: {p.atkEV} | IV: {p.atkIV}]
                     </Typography>
                     <Typography>
-                        Defence: {def}
+                        Defence: <b>{def}</b> [EV: {p.defEV} | IV: {p.defIV}]
                     </Typography>
                     <Typography>
-                        Special Attack: {spa}
+                        Special Attack: <b>{spa}</b> [EV: {p.spaEV} | IV: {p.spaIV}]
                     </Typography>
                     <Typography>
-                        Special Defence: {sdf}
+                        Special Defence: <b>{sdf}</b> [EV: {p.spdefEV} | IV: {p.spdefIV}]
                     </Typography>
                     <Typography>
-                        Speed: {spd}
+                        Speed: <b>{spd}</b> [EV: {p.spdEV} | IV: {p.spdIV}]
                     </Typography>
                 </div>
                 <Typography variant="h6" className="text-center">

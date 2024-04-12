@@ -79,6 +79,45 @@ const resolvers = {
             // }
         },
 
+        editPokemon: async (parent, {_id, name, nickname, ability, move1, move2, move3, move4, item, nature, hpEV, atkEV, defEV, spaEV, spdefEV, spdEV, hpIV, atkIV, defIV, spaIV, spdefIV, spdIV, tera}) => {
+            const p = Pokemon.findOneAndUpdate(
+                { "_id": _id },
+                { $set: {
+                    name: name,
+                    nickname: nickname,
+                    ability: ability,
+                    move1: move1,
+                    move2: move2,
+                    move3: move3,
+                    move4: move4,
+                    item: item,
+                    nature: nature,
+                    hpEV: hpEV,
+                    atkEV: atkEV,
+                    defEV: defEV,
+                    spaEV: spaEV,
+                    spdefEV: spdefEV,
+                    spdEV: spdEV,
+                    hpIV: hpIV,
+                    atkIV: atkIV,
+                    defIV: defIV,
+                    spaIV: spaIV,
+                    spdefIV: spdefIV,
+                    spdIV: spdIV,
+                    tera: tera                    
+                } },
+                { new: true, runValidators: true }
+            );
+            return p
+        },
+        editTeamName: async (parent, {_id, nickname}) => {
+            const t = Team.findOneAndUpdate(
+                { "_id": _id },
+                { $set: { nickname: nickname} },
+                { new: true, runValidators: true }
+            );
+            return t
+        },
         deletePokemon: async (parent, args) => {
             return Pokemon.findOneAndDelete (args, function (err, res) {
                 if (err) {
