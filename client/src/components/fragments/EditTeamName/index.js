@@ -12,7 +12,6 @@ export default function EditTeamName ({team, hC}) {
         setName(e.target.value)
     }
 
-
     const handleSubmit= async (e) => {
         e.preventDefault()
         try {

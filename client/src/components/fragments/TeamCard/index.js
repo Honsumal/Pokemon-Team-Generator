@@ -6,6 +6,7 @@ import ch from "../../../utils/ch";
 import PokeCard from "../PokeCard";
 import AddPokemon2Team from "../AddPokemon2Team";
 import EditTeamName from "../EditTeamName";
+import DeleteConfirmation from "../DeleteConfirmation";
 
 export default function TeamCard (team) {
     const style = {
@@ -76,6 +77,10 @@ export default function TeamCard (team) {
     const [nN, setNN] = useState(false)
     const handleNNOpen = () => setNN(true);
     const handleNNClose = () => setNN(false);
+
+    const [c, setC] = useState(false);
+    const handleCOpen = () => setC(true);
+    const handleCClose = () => setC(false);
 
     return (
         <Card sx={{ width: 300, m: 0.5 }} style = {{backgroundColor: "#e6af2e", transparency: '40%'}} className = 'project'>
@@ -155,8 +160,22 @@ export default function TeamCard (team) {
                                     </Box>
                             </Modal>
                         </div>
+        
+                        <div>
+                            <Box sx={{marginTop: 1}}>
+                                <Button variant="contained" color="error" onClick={handleCOpen}>Delete Team</Button>
+                            </Box>
+                            <Modal
+                                open={c}
+                                onClose={handleCClose}
+                                sx={{bgcolor: '#f77f00'}}
+                                >
+                                    <Box sx={styleModal2}>
+                                        <DeleteConfirmation subject={t} mode={"Team"}/>
+                                    </Box>
+                            </Modal>
+                        </div>
                     </div>
-                    
                 </CardContent>
             </Collapse>
         </Card>

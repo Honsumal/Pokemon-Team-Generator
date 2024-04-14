@@ -94,7 +94,7 @@ export default function EditPokemon ({pokemon, handleClose}){
         setML(m_list.sort())
     }
 
-    }, [])
+    }, [p.name])
 
     async function handleSubmit () {
         console.log("submitted")
@@ -161,7 +161,7 @@ export default function EditPokemon ({pokemon, handleClose}){
             });
         } catch (err) {
             console.error(err);
-            console.log(error, 'Pokemon could not be edited')
+            console.log(error2, 'Pokemon could not be edited')
         }
 
         handleClose()
