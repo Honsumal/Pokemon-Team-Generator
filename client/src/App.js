@@ -15,7 +15,7 @@ function App() {
   const [currentApp, setCurrentApp] = useState('Home');
 
   const renderApp = () => {
-    console.log(currentApp)
+    //console.log(currentApp)
     switch(currentApp) {
       case 'Pokemon':
         return <AllPokemon />

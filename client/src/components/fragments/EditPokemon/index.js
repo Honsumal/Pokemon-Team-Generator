@@ -5,33 +5,34 @@ import hc from "../../../utils/hc";
 import SubmitBox from "../SubmitBox";
 import SelectBox from "../SelectBox";
 import { useMutation } from "@apollo/client";
-import { MUTATION_EDITPOKEMON } from "../../../utils/mutations";
+import { MUTATION_EDITPOKEMON, MUTATION_EDITPOKEMONINTEAM } from "../../../utils/mutations";
 
 export default function EditPokemon ({pokemon, handleClose}){
     let p = pokemon.p
-    const [editPokemon, {error}] = useMutation(MUTATION_EDITPOKEMON)
+    const [editPokemon, {error}] = useMutation(MUTATION_EDITPOKEMON);
+    const [editTeam, {error2} ] = useMutation(MUTATION_EDITPOKEMONINTEAM);
 
-    const [ni, setNi] = useState(p.nickname)
-    const [a, setA] = useState(p.ability)
-    const [na, setNa] = useState(p.nature)
-    const [te, setTe] = useState(p.tera)
-    const [i, setI] = useState(p.item)
-    const [m1, setM1] = useState(p.move1)
-    const [m2, setM2] = useState(p.move2)
-    const [m3, setM3] = useState(p.move3)
-    const [m4, setM4] = useState(p.move4)
-    const [hpEV, setHpEV] = useState(p.hpEV)
-    const [hpIV, setHpIV] = useState(p.hpIV)
-    const [atkEV, setAtkEV] = useState(p.atkEV)
-    const [atkIV, setAtkIV] = useState(p.atkIV)
-    const [defEV, setDefEV] = useState(p.defEV)
-    const [defIV, setDefIV] = useState(p.defIV)
-    const [spaEV, setSpaEV] = useState(p.spaEV)
-    const [spaIV, setSpaIV] = useState(p.spaIV)
-    const [sdfEV, setSdfEV] = useState(p.spdefEV)
-    const [sdfIV, setSdfIV] = useState(p.spdefIV)
-    const [spdEV, setSpdEV] = useState(p.spdEV)
-    const [spdIV, setSpdIV] = useState(p.spdIV)
+    const [ni, setNi] = useState(p.nickname);
+    const [a, setA] = useState(p.ability);
+    const [na, setNa] = useState(p.nature);
+    const [te, setTe] = useState(p.tera);
+    const [i, setI] = useState(p.item);
+    const [m1, setM1] = useState(p.move1);
+    const [m2, setM2] = useState(p.move2);
+    const [m3, setM3] = useState(p.move3);
+    const [m4, setM4] = useState(p.move4);
+    const [hpEV, setHpEV] = useState(p.hpEV);
+    const [hpIV, setHpIV] = useState(p.hpIV);
+    const [atkEV, setAtkEV] = useState(p.atkEV);
+    const [atkIV, setAtkIV] = useState(p.atkIV);
+    const [defEV, setDefEV] = useState(p.defEV);
+    const [defIV, setDefIV] = useState(p.defIV);
+    const [spaEV, setSpaEV] = useState(p.spaEV);
+    const [spaIV, setSpaIV] = useState(p.spaIV);
+    const [sdfEV, setSdfEV] = useState(p.spdefEV);
+    const [sdfIV, setSdfIV] = useState(p.spdefIV);
+    const [spdEV, setSpdEV] = useState(p.spdEV);
+    const [spdIV, setSpdIV] = useState(p.spdIV);
     
     const [nL, setNL] = useState([])
     const [aL, setAL] = useState([])
@@ -129,6 +130,40 @@ export default function EditPokemon ({pokemon, handleClose}){
             console.error(err);
             console.log(error, 'Pokemon could not be edited')
         }
+
+        try {
+            const {data} = await editTeam({
+                variables: {
+                    pokemonId: p._id,
+                    name: p.name,
+                    nickname: ni,
+                    ability: a,
+                    move1: m1,
+                    move2: m2 || "(none)",
+                    move3: m3 || "(none)",
+                    move4: m4 || "(none)",
+                    item: ch(i) || "(none)",
+                    nature: na,
+                    hpEv: parseInt(hpEV),
+                    atkEv: parseInt(atkEV),
+                    defEv: parseInt(defEV),
+                    spaEv: parseInt(spaEV),
+                    spdefEv: parseInt(sdfEV),
+                    spdEv: parseInt(spdEV),
+                    hpIv: parseInt(hpIV),
+                    atkIv: parseInt(atkIV),
+                    defIv: parseInt(defIV),
+                    spaIv: parseInt(spaIV),
+                    spdefIv: parseInt(sdfIV),
+                    spdIv: parseInt(spdIV),
+                    tera: te
+                }
+            });
+        } catch (err) {
+            console.error(err);
+            console.log(error, 'Pokemon could not be edited')
+        }
+
         handleClose()
     }
 
@@ -177,7 +212,7 @@ export default function EditPokemon ({pokemon, handleClose}){
                                         
                                         <br></br>
                                         <div className="flex-row justify-center">
-                                            <Button variant="contained" onClick={handleSubmit}>Add Pokemon</Button>
+                                            <Button variant="contained" onClick={handleSubmit}>Edit Pokemon</Button>
                                         </div>                              
 
                                     </form>

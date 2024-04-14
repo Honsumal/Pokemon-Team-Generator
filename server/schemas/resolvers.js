@@ -110,6 +110,39 @@ const resolvers = {
             );
             return p
         },
+
+        editPokemoninTeam: async (parent, {pokemonID, name, nickname, ability, move1, move2, move3, move4, item, nature, hpEV, atkEV, defEV, spaEV, spdefEV, spdEV, hpIV, atkIV, defIV, spaIV, spdefIV, spdIV, tera}) => {
+            const t = Team.updateMany(
+                { },
+                { $set: {
+                    "pokemon.name": name,
+                    "pokemon.nickname": nickname,
+                    "pokemon.ability": ability,
+                    "pokemon.move1": move1,
+                    "pokemon.move2": move2,
+                    "pokemon.move3": move3,
+                    "pokemon.move4": move4,
+                    "pokemon.item": item,
+                    "pokemon.nature": nature,
+                    "pokemon.hpEV": hpEV,
+                    "pokemon.atkEV": atkEV,
+                    "pokemon.defEV": defEV,
+                    "pokemon.spaEV": spaEV,
+                    "pokemon.spdefEV": spdefEV,
+                    "pokemon.spdEV": spdEV,
+                    "pokemon.hpIV": hpIV,
+                    "pokemon.atkIV": atkIV,
+                    "pokemon.defIV": defIV,
+                    "pokemon.spaIV": spaIV,
+                    "pokemon.spdefIV": spdefIV,
+                    "pokemon.spdIV": spdIV,
+                    "pokemon.tera": tera
+                } },
+                  { arrayFilters: [ { "pokemon._id": pokemonID} ] }
+            )
+            return t
+        },
+
         editTeamName: async (parent, {_id, nickname}) => {
             const t = Team.findOneAndUpdate(
                 { "_id": _id },
