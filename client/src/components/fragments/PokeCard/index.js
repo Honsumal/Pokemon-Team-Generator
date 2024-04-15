@@ -4,10 +4,10 @@ import ch from "../../../utils/ch";
 import hpCalc from "../../../utils/hpCalc";
 import statCalc from "../../../utils/statCalc";
 import EditPokemon from "../EditPokemon";
+import DeleteConfirmation from "../DeleteConfirmation";
 
 export default function PokeCard (pokemon) {
     let p = pokemon.p
-
     
     const styleModal = {
         position: 'absolute',
@@ -18,6 +18,19 @@ export default function PokeCard (pokemon) {
         bgcolor: '#003049',
         border: '2px solid #000',
         boxShadow: 24,
+        p: 4
+      };
+      const styleModal2 = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 1200,
+        bgcolor: '#003049',
+        border: '2px solid #000',
+        boxShadow: 24,
+        maxHeight: 600,
+        overflowY: 'auto',
         p: 4
       };
 
@@ -31,6 +44,10 @@ export default function PokeCard (pokemon) {
     const [open, setOpen] = useState(false);
     const handleOpenEdit = () => setOpen(true);
     const handleCloseEdit = () => setOpen(false);
+    
+    const [c, setC] = useState(false);
+    const handleCOpen = () => setC(true);
+    const handleCClose = () => setC(false)
 
     useEffect(() => {
         function findStats () {
@@ -159,6 +176,20 @@ export default function PokeCard (pokemon) {
                                 </Box>
                         </Modal>
                     </Box>
+                </div>
+                <div className="flex-row justify-center">
+                    <Box sx={{marginTop: 1}}>
+                        <Button variant="contained" color="error" onClick={handleCOpen}>Delete Pokemon</Button>
+                    </Box>
+                    <Modal
+                        open={c}
+                        onClose={handleCClose}
+                        sx={{bgcolor: '#f77f00'}}
+                        >
+                            <Box sx={styleModal2}>
+                                <DeleteConfirmation subject={p} mode={"Pokemon"}/>
+                            </Box>
+                    </Modal>
                 </div>
             </CardContent>
         </Card>

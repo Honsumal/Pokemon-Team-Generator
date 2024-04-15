@@ -131,3 +131,36 @@ mutation Mutation($id: ID!, $pokemonId: ID!) {
     }
 }
 `
+
+export const MUTATION_REMOVEPOKEMONGROMMULTIPLETEAMS = gql`
+mutation Mutation($id: ID!) {
+  removePokemonfromMultipleTeams(_id: $id) {
+    _id
+    pokemon {
+      _id
+      name
+      nickname
+      ability
+      move1
+      move2
+      move3
+      move4
+      item
+      nature
+      hpEV
+      atkEV
+      defEV
+      spaEV
+      spdefEV
+      spdEV
+      hpIV
+      atkIV
+      defIV
+      spaIV
+      spdefIV
+      spdIV
+      tera
+    }
+  }
+}
+`

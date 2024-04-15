@@ -3,37 +3,20 @@ const {
     Team
 } = require('../models')
 
-// const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
     Query: {
         getOnePokemon: async (parent, { _id}) => {
-            // const {_id} = args
             const onePokemon = await Pokemon.findOne({ _id: _id })
-
-            // if(!onePokemon) {
-            //     throw new AuthenticationError('Cannot find this Pokemon')
-            // }
 
             return onePokemon
         },
 
         getAllPokemon: async () => {
-            //const allPokemon = Pokemon.find()
-
-            // if(!allPokemon) {
-            //     throw new AuthenticationError('Aiyah')
-            // }
-
             return Pokemon.find()
         },
 
         getTeams: async () => {
-
-            // if(!allTeams) {
-            //     throw new AuthenticationError('Aiyah')
-            // }
-
             return Team.find()
         }
     },
@@ -215,17 +198,13 @@ const resolvers = {
             
             let pt= []
 
-            //console.log(t)
-
             for (let i = 0; i < t.length; i++) {
 
                 pt = t[i].pokemon.filter((a) => a._id != _id)
-                //console.log(t[i]._id)
 
                 const rPfMT = await Team.findOneAndUpdate (
                     { _id: t[i]._id},
                     { $set: {pokemon: pt} },
-                    //{ new:true, runValidators: true }
                 )
             }
             return t
