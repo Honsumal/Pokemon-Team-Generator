@@ -84,7 +84,10 @@ const typeDefs = gql`
         deleteTeam (_id: ID!): Team
 
         addPokemontoTeam (_id: ID!, pokemonID: ID!): Team
+        removePokemonfromMultipleTeams (_id: ID!): Team
         removePokemonfromTeam (_id: ID!, pokemonID: ID!): Team
+        
+
     }
 `
 module.exports = typeDefs

@@ -20,7 +20,6 @@ export default function DeleteConfirmation ({subject, mode}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        //console.log(typeof(n), typeof(name), n, name)
         if (name === subject.nickname) {
             switch(mode) {
                 case "Team":

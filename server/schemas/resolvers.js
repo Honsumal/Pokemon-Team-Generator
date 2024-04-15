@@ -200,13 +200,35 @@ const resolvers = {
                 { _id: _id },
                 { $set: {pokemon: golem} },
                 { new: true, runValidators: true }
-                )
+            )
 
             // if(!rPfT) {
             //     throw new AuthenticationError('Pokemon not removed from team')
             // }
             
             return team2edit.pokemon.filter((a) => a._id == pokemonID )
+        },
+
+        removePokemonfromMultipleTeams: async (parent, { _id }) => {
+            const t = await Team.find({})
+                .then((data) => queryData = data)
+            
+            let pt= []
+
+            //console.log(t)
+
+            for (let i = 0; i < t.length; i++) {
+
+                pt = t[i].pokemon.filter((a) => a._id != _id)
+                //console.log(t[i]._id)
+
+                const rPfMT = await Team.findOneAndUpdate (
+                    { _id: t[i]._id},
+                    { $set: {pokemon: pt} },
+                    //{ new:true, runValidators: true }
+                )
+            }
+            return t
         }
     }
 }
