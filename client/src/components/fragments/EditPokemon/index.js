@@ -6,8 +6,13 @@ import SubmitBox from "../SubmitBox";
 import SelectBox from "../SelectBox";
 import { useMutation } from "@apollo/client";
 import { MUTATION_EDITPOKEMON, MUTATION_EDITPOKEMONINTEAM } from "../../../utils/mutations";
+import checkEVs from "../../../utils/checkEVs";
+import checkIVs from "../../../utils/checkIVs";
 
 export default function EditPokemon ({pokemon, handleClose}){
+    // https://pokeapi.co/api/v2/item-category?limit=100000&offset=0
+    // 3, 5, 6, 7, 12, 13, 15, 16, 17, 18, 19, 42, 44, 45, 46, 47
+
     let p = pokemon.p
     const [editPokemon, {error}] = useMutation(MUTATION_EDITPOKEMON);
     const [editTeam, {error2} ] = useMutation(MUTATION_EDITPOKEMONINTEAM);
@@ -46,7 +51,7 @@ export default function EditPokemon ({pokemon, handleClose}){
             .catch(error => console.error(error))
         
         function genNatureList (data) {
-            let nature_list = []
+            let nature_list = ['(none)']
             for (let i = 0; i < data.length; i++) {
                 nature_list.push(data[i].name)
             }
@@ -98,6 +103,14 @@ export default function EditPokemon ({pokemon, handleClose}){
 
     async function handleSubmit () {
         console.log("submitted")
+
+        let ev = checkEVs(hpEV, atkEV, defEV, spaEV, sdfEV, spdEV)
+        let iv = checkIVs(hpIV, atkIV, defIV, spaIV, sdfIV, spdIV)
+
+        if (!ev || !iv) {
+            return
+        }
+
         try {
             const {data} = await editPokemon({
                 variables: {
@@ -185,7 +198,7 @@ export default function EditPokemon ({pokemon, handleClose}){
                                             <SelectBox label={"Ability"} list={aL} val={a} setSub={setA}/>
                                             <SelectBox label={"Nature"} list={nL} val={na} setSub={setNa}/>
                                             <SelectBox label={"Tera Type"} list={tL} val={te} setSub={setTe}/>
-                                            <SubmitBox label={"Held Item"} setSub={setI} def={ch(p.item)}/>
+                                            <SubmitBox w={250} label={"Held Item"} setSub={setI}/>
                                         </div>
                                         <div className="flex-row justify-center">
                                             <SelectBox label={"Move 1"} list={mL} val={m1} setSub={setM1}/>

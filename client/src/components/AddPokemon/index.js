@@ -4,6 +4,8 @@ import hc from '../../utils/hc'
 import ch from '../../utils/ch'
 import SubmitBox from '../fragments/SubmitBox'
 import SelectBox from '../fragments/SelectBox'
+import checkEVs from '../../utils/checkEVs'
+import checkIVs from '../../utils/checkIVs'
 import { useMutation } from '@apollo/client'
 import { MUTATION_CREATEPOKEMON } from '../../utils/mutations'
 
@@ -70,6 +72,7 @@ export default function AddPokemon ({handleClose}) {
         }
     }, [])
 
+
     function handlePSubmit (e) {
         e.preventDefault();
         fetch('https://pokeapi.co/api/v2/pokemon/' + hc(pi))
@@ -101,7 +104,14 @@ export default function AddPokemon ({handleClose}) {
         e.preventDefault()
         // console.log(ni, a, na, te, ch(i))
         // console.log(m1, m2, m3 ,m4)
-        console.log(hpIV, atkIV)
+        // console.log(hpIV, atkIV)
+
+        let ev = checkEVs(hpEV, atkEV, defEV, spaEV, sdfEV, spdEV)
+        let iv = checkIVs(hpIV, atkIV, defIV, spaIV, sdfIV, spdIV)
+
+        if (!ev || !iv) {
+            return
+        }
         
         try {
             const {data} = await newPokemon({
@@ -173,7 +183,7 @@ export default function AddPokemon ({handleClose}) {
                                             <SelectBox label={"Ability"} list={aL} val={a} setSub={setA}/>
                                             <SelectBox label={"Nature"} list={nL} val={na} setSub={setNa}/>
                                             <SelectBox label={"Tera Type"} list={tL} val={te} setSub={setTe}/>
-                                            <SubmitBox label={"Held Item"} setSub={setI} />
+                                            <SubmitBox w={250} label={"Held Item"} setSub={setI}/>
                                         </div>
                                         <div className="flex-row justify-center">
                                             <SelectBox label={"Move 1"} list={mL} val={m1} setSub={setM1}/>
