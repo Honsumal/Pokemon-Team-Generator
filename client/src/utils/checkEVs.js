@@ -41,7 +41,7 @@ export default function checkEVs (h, a, d, sa, sd, sp) {
         message.push('Your EVs cannot total greater than 510 in total!')
     }
 
-    console.log(message)
+    //console.log(message)
 
     if(message.length === 0) {
         return true
