@@ -8,6 +8,7 @@ import { useMutation } from "@apollo/client";
 import { MUTATION_EDITPOKEMON, MUTATION_EDITPOKEMONINTEAM } from "../../../utils/mutations";
 import checkEVs from "../../../utils/checkEVs";
 import checkIVs from "../../../utils/checkIVs";
+import checkItem from "../../../utils/checkItem";
 
 export default function EditPokemon ({pokemon, handleClose}){
     // https://pokeapi.co/api/v2/item-category?limit=100000&offset=0
@@ -106,8 +107,14 @@ export default function EditPokemon ({pokemon, handleClose}){
 
         let ev = checkEVs(hpEV, atkEV, defEV, spaEV, sdfEV, spdEV)
         let iv = checkIVs(hpIV, atkIV, defIV, spaIV, sdfIV, spdIV)
+        let it
+        if (i) {
+            it = checkItem (hc(i))
+        } else {
+            it = true
+        }
 
-        if (!ev || !iv) {
+        if (!ev || !iv || !it) {
             return
         }
 
@@ -198,7 +205,7 @@ export default function EditPokemon ({pokemon, handleClose}){
                                             <SelectBox label={"Ability"} list={aL} val={a} setSub={setA}/>
                                             <SelectBox label={"Nature"} list={nL} val={na} setSub={setNa}/>
                                             <SelectBox label={"Tera Type"} list={tL} val={te} setSub={setTe}/>
-                                            <SubmitBox w={250} label={"Held Item"} setSub={setI}/>
+                                            <SubmitBox w={250} label={"Held Item"} setSub={setI} def={ch(p.item)}/>
                                         </div>
                                         <div className="flex-row justify-center">
                                             <SelectBox label={"Move 1"} list={mL} val={m1} setSub={setM1}/>

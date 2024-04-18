@@ -8,6 +8,7 @@ import checkEVs from '../../utils/checkEVs'
 import checkIVs from '../../utils/checkIVs'
 import { useMutation } from '@apollo/client'
 import { MUTATION_CREATEPOKEMON } from '../../utils/mutations'
+import checkItem from '../../utils/checkItem'
 
 export default function AddPokemon ({handleClose}) {
     const [p, setP] = useState([])
@@ -108,8 +109,15 @@ export default function AddPokemon ({handleClose}) {
 
         let ev = checkEVs(hpEV, atkEV, defEV, spaEV, sdfEV, spdEV)
         let iv = checkIVs(hpIV, atkIV, defIV, spaIV, sdfIV, spdIV)
+        let it
+        if (i) {
+            it = checkItem (hc(i))
+        } else {
+            it = true
+        }
+        
 
-        if (!ev || !iv) {
+        if (!ev || !iv || !it) {
             return
         }
         
@@ -145,7 +153,7 @@ export default function AddPokemon ({handleClose}) {
             console.log(error, 'Pokemon could not be created')
         }
         //console.log(ni + ' was added' )
-        handleClose()
+        await handleClose()
     }
 
     function handleInput(e){

@@ -46,6 +46,7 @@ export default function checkEVs (h, a, d, sa, sd, sp) {
     if(message.length === 0) {
         return true
     } else {
+        alert(message)
         return false
     }
 }
