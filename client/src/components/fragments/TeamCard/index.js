@@ -7,6 +7,8 @@ import PokeCard from "../PokeCard";
 import AddPokemon2Team from "../AddPokemon2Team";
 import EditTeamName from "../EditTeamName";
 import DeleteConfirmation from "../DeleteConfirmation";
+import { useMutation } from "@apollo/client";
+import { MUTATION_REMOVEPOKEMONFROMTEAM } from "../../../utils/mutations";
 
 export default function TeamCard (team) {
     const style = {
@@ -82,6 +84,24 @@ export default function TeamCard (team) {
     const handleCOpen = () => setC(true);
     const handleCClose = () => setC(false);
 
+    const [rft, {error}] = useMutation(MUTATION_REMOVEPOKEMONFROMTEAM)
+
+    const handleRFT = async (pokemon) => {
+        try {
+            const {data} = await rft({
+                variables: {
+                    id: t._id,
+                    pokemonId: pokemon._id
+                }
+            });
+        } catch (err) {
+            console.error(err);
+            console.log(error, 'Pokemon could not be removed')
+        }
+
+        window.location.reload()
+    }
+
     return (
         <Card sx={{ width: 300, m: 0.5 }} style = {{backgroundColor: "#e6af2e", transparency: '40%'}} className = 'project'>
             <CardHeader
@@ -107,6 +127,9 @@ export default function TeamCard (team) {
                                         <Box sx={style} onClick={() => handleOpen(p)}>
                                             <Typography sx={{margin: 0.5}}>{p.nickname}</Typography>
                                             <Typography sx={{margin: 0.5}}>({ch(p.name)})</Typography>
+                                        </Box>
+                                        <Box sx={{marginTop: 1, marginBottom: 1}}>
+                                            <Button variant="contained" color="error" onClick={() => handleRFT(p)}>Remove {p.nickname} from {t.nickname}</Button>
                                         </Box>
                                         <Box sx={{margin: 1}}>
                                             <Modal

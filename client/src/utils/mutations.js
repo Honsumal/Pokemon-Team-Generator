@@ -123,7 +123,7 @@ mutation Mutation($id: ID!) {
 export const MUTATION_REMOVEPOKEMONFROMTEAM = gql`
 mutation Mutation($id: ID!, $pokemonId: ID!) {
     removePokemonfromTeam(_id: $id, pokemonID: $pokemonId) {
-      nickname
+      _id
       pokemon {
         _id
         name

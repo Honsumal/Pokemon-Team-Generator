@@ -179,17 +179,18 @@ const resolvers = {
 
             let golem = team2edit.pokemon.filter((a) => a._id != pokemonID )
 
+            //console.log(golem.length)
+
             const rPfT = Team.findOneAndUpdate (
                 { _id: _id },
-                { $set: {pokemon: golem} },
-                { new: true, runValidators: true }
+                { $set: {pokemon: golem} }
             )
 
             // if(!rPfT) {
             //     throw new AuthenticationError('Pokemon not removed from team')
             // }
             
-            return team2edit.pokemon.filter((a) => a._id == pokemonID )
+            return rPfT
         },
 
         removePokemonfromMultipleTeams: async (parent, { _id }) => {
